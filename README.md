@@ -4,13 +4,15 @@ A comprehensive engineering portfolio showcasing the convergence of secure netwo
 
 ## 📑 Table of Contents
 
-* [Portfolio Overview](https://www.google.com/search?q=%23portfolio-overview)
-* [Project 1: TrustCheck API (Network Architecture)](https://www.google.com/search?q=%23project-1-trustcheck-api-network-architecture)
-* [Project 2: ActiveMitigate IoT (Gas Safety System)](https://www.google.com/search?q=%23project-2-activemitigate-iot-gas-safety-system)
-* [Technical Stack](https://www.google.com/search?q=%23technical-stack)
-* [Project Structure](https://www.google.com/search?q=%23project-structure)
-* [Development Team](https://www.google.com/search?q=%23development-team)
-* [License](https://www.google.com/search?q=%23license)
+* [Portfolio Overview](#portfolio-overview)
+* [Project 1: TrustCheck API (Network Architecture)](#project-1-trustcheck-api-network-architecture)
+* [Project 2: ActiveMitigate IoT (Gas Safety System)](#project-2-activemitigate-iot-gas-safety-system)
+* [Technical Stack](#technical-stack)
+* [Configuration](#configuration)
+* [Build & Verification](#build--verification)
+* [Project Structure](#project-structure)
+* [Development Team](#development-team)
+* [License](#license)
 
 ---
 
@@ -62,13 +64,71 @@ Unlike passive monitoring tools, **ActiveMitigate** implements an **Active Contr
 
 ---
 
+## Configuration
+
+The portable subsystems require credentials at runtime. Keep secrets out of the
+repository:
+
+* **Telegram bot:** provide the bot token via the `TELEGRAM_BOT_TOKEN`
+  environment variable before launching the Java app. The `getBotToken()`
+  method in `TelegramBot.java` reads it from the environment and fails fast if
+  it is missing. Any token previously committed to history should be revoked
+  and regenerated with `@BotFather`.
+* **ESP8266 nodes:** the WiFi SSID/password and MQTT broker in the `.ino`
+  sketches are placeholder values from the lab environment (`Corporativo` /
+  `123456789`, broker `broker.emqx.io:1883`) — replace them with your own
+  network credentials before flashing.
+
+---
+
+## Build & Verification
+
+> **Verification status:** this repository was authored and demoed in the
+> original course environment. Reproducing the builds here requires toolchains
+> that are not included in this repo. What follows is the intended build path;
+> items that could not be executed locally are marked explicitly.
+
+### Java App (ActiveMitigate IoT) — *Not locally verified*
+
+```bash
+cd "ActiveMitigate IoT/JavaApp/1"
+mvn package
+```
+
+**Not locally verified:** building requires a Java runtime plus network access
+to fetch the Maven dependencies (Eclipse Paho MQTT client, Telegram Bots API)
+from `repo.eclipse.org` / Maven Central, and Maven was not run from a machine
+with those prerequisites during this pass. Running it also needs a live MQTT
+broker (`broker.emqx.io:1883`) and the Telegram API.
+
+### ESP8266 Firmware — *Not locally verified*
+
+```bash
+arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 "ActiveMitigate IoT/ARDUINOESP1"
+arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 "ActiveMitigate IoT/ARDUINOESP2"
+```
+
+**Not locally verified:** the sketches require the Arduino CLI/IDE with the
+ESP8266 board core (headers such as `ESP8266WiFi.h`, `PubSubClient.h`,
+`Servo.h`) and target real hardware (MQ-2 gas sensor, servo, buzzer, network
+connection). No Arduino toolchain or board was available during this pass.
+
+### TrustCheck API (Network Architecture)
+
+Documentation-only project (PDF design deliverable). There is no source code to
+build; the design was validated in GNS3 in the original environment —
+**not locally verified** here.
+
+---
+
 ## Project Structure
 
 ```text
-C:.
+.
+│   .gitignore
 │   LICENSE
 │   README.md
-│   
+│
 ├───ActiveMitigate IoT
 │   │   ActiveMitigate IoT.pdf     # IoT System Implementation Report
 │   │   Arquitectura.jpg           # System Architecture Diagram
@@ -91,6 +151,9 @@ C:.
         TrustCheck API.pdf         # Enterprise Network Design Documentation
 
 ```
+
+Maven/IDE build outputs under `JavaApp/1/target/`, `*.class` and Eclipse
+project files are ignored via `.gitignore` and are not tracked.
 
 ---
 
