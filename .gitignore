@@ -1,0 +1,14 @@
+# Java build outputs (ActiveMitigate IoT/JavaApp)
+*.class
+*.lck
+target/
+dependency-reduced-pom.xml
+
+# Eclipse IDE project files
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
