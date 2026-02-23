@@ -1,69 +1,64 @@
-# Networks & Telecommunications Portfolio
+# Integrated Systems Portfolio: Network Infrastructure & IoT Safety
 
-A collection of advanced engineering projects focused on network infrastructure design and IoT (Internet of Things) integration. Developed for the **Networks & Telecoms** course at Pontificia Universidad Javeriana.
+A comprehensive engineering portfolio showcasing the convergence of secure network architecture and automated IoT safety systems.
 
-## Table of Contents
+## 📑 Table of Contents
 
-* [Project Overview](https://www.google.com/search?q=%23project-overview)
-* [Project #1: Enterprise Network Design](https://www.google.com/search?q=%23project-1-enterprise-network-design)
-* [Project #2: Remote LPG Monitoring & Control System](https://www.google.com/search?q=%23project-2-remote-lpg-monitoring--control-system)
-* [Tech Stack](https://www.google.com/search?q=%23tech-stack)
+* [Portfolio Overview](https://www.google.com/search?q=%23portfolio-overview)
+* [Project 1: TrustCheck API (Network Architecture)](https://www.google.com/search?q=%23project-1-trustcheck-api-network-architecture)
+* [Project 2: ActiveMitigate IoT (Gas Safety System)](https://www.google.com/search?q=%23project-2-activemitigate-iot-gas-safety-system)
+* [Technical Stack](https://www.google.com/search?q=%23technical-stack)
 * [Project Structure](https://www.google.com/search?q=%23project-structure)
-* [Setup and Installation](https://www.google.com/search?q=%23setup-and-installation)
 * [Development Team](https://www.google.com/search?q=%23development-team)
+* [License](https://www.google.com/search?q=%23license)
 
 ---
 
-## Project Overview
+## Portfolio Overview
 
-This repository demonstrates the practical application of networking protocols, infrastructure optimization, and IoT communication. It covers the transition from designing high-availability enterprise networks (IPv4/IPv6) to implementing real-time monitoring systems using MQTT and Telegram integration.
+This repository demonstrates technical proficiency in bridging the gap between hardware and software through:
 
----
-
-## Project #1: Enterprise Network Design
-
-**Purpose:** To design and prototype a robust network infrastructure for "Company XYZ," focusing on software development and IT consulting needs.
-
-### Key Features
-
-* **Scalable Architecture:** Multi-building design with dedicated subnets for Management, Development, Systems, and Research departments.
-* **Protocol Implementation:**
-* **Dual-Stack:** Full IPv4 and IPv6 compatibility for research environments.
-* **Redundancy:** Implementation of Spanning Tree Protocol (STP) to prevent loops and ensure network availability.
-
-
-* **Simulation:** Prototyped using the **GNS3** platform to validate internet connectivity and inter-VLAN routing across buildings.
+1. **Network Engineering:** Scalable enterprise designs featuring IPv4/IPv6 Dual-Stack and L2 redundancy.
+2. **Embedded Systems:** Real-time telemetry using event-driven architectures and industrial communication protocols (MQTT).
 
 ---
 
-## Project #2: Remote LPG Monitoring & Control System
+## Project 1: TrustCheck API (Network Architecture)
 
-**Purpose:** An IoT-based safety solution designed to detect Liquefied Petroleum Gas (LPG) leaks and take autonomous preventive actions.
+**Focus:** High Availability, Scalability, and Multi-protocol Routing for Corporate Environments.
 
-### Architecture
+### Engineering Highlights:
 
-The system utilizes a distributed architecture with hardware sensing and cloud-based notifications:
-
-1. **Sensing Layer:** ESP8266 (NodeMCU) and MQ-2 sensors detect gas concentrations.
-2. **Control Layer:** Automated valve closure mechanism via servomotors when leaks are detected.
-3. **Communication Layer:** **MQTT Protocol** handles real-time messaging between hardware and the Java-based central controller.
-4. **Notification Layer:** Integration with **Telegram Bot API** to alert homeowners instantly.
-
-### Software Components
-
-* **Java Client:** Orchestrates the logic, managing the connection to the EMQX broker and processing sensor data.
-* **Arduino/C++:** Firmware for ESP8266 devices handling Wi-Fi connectivity and sensor reading.
+* **Hierarchical Design:** Implemented a core-distribution-access layer model for a multi-building corporate campus.
+* **L2 Resilience:** Configured **STP (Spanning Tree Protocol)** to eliminate network loops and ensure uptime through redundant links.
+* **IPv6 Readiness:** Deployed a **Dual-Stack** environment specifically for the Research department to ensure future-proof interoperability.
+* **Validation:** Prototype fully simulated and stress-tested using **GNS3**, emulating real Cisco IOS behavior.
 
 ---
 
-## Tech Stack
+## Project 2: ActiveMitigate IoT (Gas Safety System)
 
-| Category | Technologies |
+**Focus:** Remote monitoring and autonomous hazard intervention.
+
+### System Architecture:
+
+Unlike passive monitoring tools, **ActiveMitigate** implements an **Active Control Loop** to prevent industrial and domestic accidents:
+
+1. **Edge Sensing:** ESP8266 nodes process MQ-2 analog signals to detect LPG thresholds with high precision.
+2. **Mission-Critical Messaging:** Utilizes **MQTT (EMQX Broker)** for lightweight, low-latency data transmission.
+3. **Autonomous Actuation:** Instant mechanical valve closure via servomotors triggered by hardware interrupts.
+4. **Real-Time Alerts:** Integrated with **Telegram Bot API** for cloud-based push notifications.
+
+---
+
+## Technical Stack
+
+| Category | Tools & Protocols |
 | --- | --- |
-| **Networking Tools** | GNS3, Cisco Packet Tracer, Wireshark |
-| **IoT & Hardware** | ESP8266 (NodeMCU), Arduino IDE, MQ-2 Gas Sensor, Servomotors |
-| **Communication** | MQTT (EMQX Broker), TCP/IP, IPv4/IPv6, Telegram API |
-| **Software** | Java (Maven), Eclipse IDE, TelegramBots Library |
+| **Networking** | GNS3, Wireshark, Cisco IOS, OSPF, STP, IPv4/IPv6 |
+| **Embedded Systems** | ESP8266 (NodeMCU), Arduino C++, MQ-2 Sensors |
+| **Backend & Cloud** | Java 17, Maven, Telegram API, MQTT (EMQX) |
+| **Software Dev** | Eclipse IDE, Python (Scraping logic), Git |
 
 ---
 
@@ -71,61 +66,45 @@ The system utilizes a distributed architecture with hardware sensing and cloud-b
 
 ```text
 C:.
+│   LICENSE
 │   README.md
 │   
-├───Project #1
-│       Project1.pdf           # Comprehensive Network Design Report
-│       
-└───Project #2
-    │   Arquitectura.jpg       # IoT System Architecture Diagram
-    │   Project2.pdf           # IoT Implementation Documentation
-    │
-    ├───ARDUINOESP1            # Firmware for Gas Detection Node
-    │       ARDUINOESP1.ino
-    │
-    ├───ARDUINOESP2            # Firmware for Control/Valve Node
-    │       ARDUINOESP2.ino
-    │
-    └───JavaApp                # Central Controller & Telegram Bot
-        └───1
-            │   pom.xml        # Maven Dependencies (MQTT, Telegram)
-            ├───src/main/java
-            │       Main.java          # Entry point
-            │       Redes.java         # MQTT Client Logic
-            │       TelegramBot.java   # Notification handler
-            └───target/...
+├───ActiveMitigate IoT
+│   │   ActiveMitigate IoT.pdf     # IoT System Implementation Report
+│   │   Arquitectura.jpg           # System Architecture Diagram
+│   │
+│   ├───ARDUINOESP1                # Firmware: Gas Detection Node
+│   │       ARDUINOESP1.ino
+│   │
+│   ├───ARDUINOESP2                # Firmware: Valve Actuator Node
+│   │       ARDUINOESP2.ino
+│   │
+│   └───JavaApp                    # Central Orchestrator
+│       └───1
+│           ├───src/main/java      # Logic: Main, MQTT Client, Telegram Bot
+│           │       Main.java
+│           │       Redes.java
+│           │       TelegramBot.java
+│           └───pom.xml            # Maven Dependencies
+│
+└───TrustCheck API
+        TrustCheck API.pdf         # Enterprise Network Design Documentation
 
 ```
 
 ---
 
-## Setup and Installation
+## Development Team
 
-### Project 1 (Design)
-
-* Review the `Project1.pdf` for the full network topology and IP addressing schemes. The design is intended for implementation in **GNS3**.
-
-### Project 2 (IoT)
-
-1. **Hardware:**
-* Flash the `.ino` files to your ESP8266 devices using the Arduino IDE.
-* Ensure the MQ-2 and Servomotor are wired according to the `Project2.pdf` schematics.
-
-
-2. **Backend:**
-* Import the `JavaApp/1` folder as a Maven project in your IDE.
-* Configure your `MQTT Broker` credentials and `Telegram Bot Token` in `TelegramBot.java`.
-* Run `Main.java`.
-
-
+| Member | Primary Role | GitHub |
+| --- | --- | --- |
+| Daniel Castro | Java Backend & Network Arch | [@Dani2044](https://github.com/Dani2044) |
+| Maria Paula Rodriguez | IoT Hardware Implementation | [@MapaRuiz](https://github.com/MapaRuiz) |
+| Juan Enrique Rozo | Network Topology Design | [@JuanR771](https://github.com/JuanR771) |
+| Julian Ramos | C++ Firmware Development | [@juliancramos](https://github.com/juliancramos) |
 
 ---
 
-## Development Team
+## License
 
-| Member | GitHub | Role |
-| --- | --- | --- |
-| **Daniel Castro** | [@Dani2044](https://github.com/Dani2044) | Network Design & Java Dev |
-| Maria Paula Rodriguez | [@MapaRuiz](https://github.com/MapaRuiz) | IoT Implementation |
-| Juan Enrique Rozo | [@JuanR771](https://github.com/JuanR771) | Network Architecture |
-| Julian Ramos | [@juliancramos](https://github.com/juliancramos) | Firmware Development |
+This project is licensed under the **MIT License**.
