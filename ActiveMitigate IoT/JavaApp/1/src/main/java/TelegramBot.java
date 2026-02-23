@@ -12,7 +12,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "7368091474:AAGlgF7QGDLcp6N_ueWT37XYSo2D8tayPnM";
+        String token = System.getenv("TELEGRAM_BOT_TOKEN");
+        if (token == null || token.isEmpty()) {
+            throw new IllegalStateException(
+                "TELEGRAM_BOT_TOKEN environment variable is not set.");
+        }
+        return token;
     }
 
     @Override
